@@ -72,6 +72,29 @@ export function classifyTwoGaussData(numSamples: number, noise: number):
   return points;
 }
 
+export function classifyPhase(numSamples: number, noise: number):
+    Example2D[] {
+  let points: Example2D[] = [];
+
+  let varianceScale = d3.scale.linear().domain([0, .5]).range([0.5, 4]);
+  let variance = varianceScale(noise);
+
+    for (let i = 0; i < numSamples / 2; i++) {
+      let x = randUniform(-domain, domain);
+      let y = randUniform(-domain, domain);
+      let label = 1;
+      if (y > 2 && -x + 5 < y) {
+          label = -1
+      }
+      let noiseX = randUniform(-domain, domain) * noise;
+      let noiseY = randUniform(-domain, domain) * noise;
+      points.push({x+noiseX, y+noiseY, label});
+    }
+
+  return points;
+}
+
+
 export function regressPlane(numSamples: number, noise: number):
   Example2D[] {
   let radius = 6;
