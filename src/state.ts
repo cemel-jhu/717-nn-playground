@@ -162,7 +162,7 @@ export class State {
   cosY = false;
   sinY = false;
   dataset: dataset.DataGenerator = dataset.classifyPhase;
-  regDataset: dataset.DataGenerator = dataset.regressStrain;
+  regDataset: dataset.DataGenerator = dataset.regressStress;
   seed: string;
 
   /**
