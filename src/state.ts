@@ -161,8 +161,8 @@ export class State {
   sinX = false;
   cosY = false;
   sinY = false;
-  dataset: dataset.DataGenerator = dataset.classifyCircleData;
-  regDataset: dataset.DataGenerator = dataset.regressPlane;
+  dataset: dataset.DataGenerator = dataset.classifyPhase;
+  regDataset: dataset.DataGenerator = dataset.regressStrain;
   seed: string;
 
   /**
