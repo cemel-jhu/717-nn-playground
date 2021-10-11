@@ -45,7 +45,7 @@ export let datasets: {[key: string]: dataset.DataGenerator} = {
 
 /** A map between dataset names and functions that generate regression data. */
 export let regDatasets: {[key: string]: dataset.DataGenerator} = {
-  "reg-strain": dataset.regressStrain,
+  "reg-stress": dataset.regressStress,
   "reg-gauss": dataset.regressGaussian
 };
 

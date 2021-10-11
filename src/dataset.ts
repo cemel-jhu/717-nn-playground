@@ -97,7 +97,7 @@ export function classifyPhase(numSamples: number, noise: number):
   return points;
 }
 
-export function regressStrain(numSamples: number, noise: number):
+export function regressStress(numSamples: number, noise: number):
   Example2D[] {
   let radius = 6;
   let labelScale = d3.scale.linear()
