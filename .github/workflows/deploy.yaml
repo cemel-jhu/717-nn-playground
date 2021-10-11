@@ -25,6 +25,7 @@ jobs:
     - name: build
       run: |
         mkdir dist
+        npm install
         npm run build
 
     - name: deploy
