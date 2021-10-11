@@ -76,24 +76,42 @@ export function classifyPhase(numSamples: number, noise: number):
     Example2D[] {
   let points: Example2D[] = [];
 
-  let varianceScale = d3.scale.linear().domain([0, .5]).range([0.5, 4]);
-  let variance = varianceScale(noise);
+  let domain = 10;
 
-    for (let i = 0; i < numSamples / 2; i++) {
-      let x = randUniform(-domain, domain);
-      let y = randUniform(-domain, domain);
-      let label = 1;
-      if (y > 2 && -x + 5 < y) {
-          label = -1
-      }
-      let noiseX = randUniform(-domain, domain) * noise;
-      let noiseY = randUniform(-domain, domain) * noise;
-      points.push({x+noiseX, y+noiseY, label});
+  for (let i = 0; i < numSamples; i++) {
+    let x = randUniform(-domain, domain);
+    let y = randUniform(-domain, domain);
+    let label = 1;
+    if (y > 2 && -x + 5 < y) {
+        label = -1;
     }
+    let noiseX = randUniform(-domain, domain) * noise;
+    let noiseY = randUniform(-domain, domain) * noise;
+    points.push({x+noiseX, y+noiseY, label});
+  }
 
   return points;
 }
 
+export function regressStrain(numSamples: number, noise: number):
+  Example2D[] {
+  let radius = 6;
+  let labelScale = d3.scale.linear()
+    .domain([-10, 10])
+    .range([-1, 1]);
+  let getLabel = (x, y) => labelScale(x + y);
+
+  let points: Example2D[] = [];
+  for (let i = 0; i < numSamples; i++) {
+    let x = randUniform(-radius, radius);
+    let y = randUniform(-radius, radius);
+    let noiseX = randUniform(-radius, radius) * noise;
+    let noiseY = randUniform(-radius, radius) * noise;
+    let label = getLabel(x + noiseX, y + noiseY);
+    points.push({x, y, label});
+  }
+  return points;
+}
 
 export function regressPlane(numSamples: number, noise: number):
   Example2D[] {
